@@ -15,13 +15,13 @@ with col2:
 
     st.subheader("Gráficos")
 
-    st.image("/incendioD3/assets/fireBiomas.png", width=1600)
+    st.image("../assets/fireBiomas.png", width=1600)
 
-    st.image("/incendioD3/assets/fireEstados.png", width=1600)
+    st.image("../assets/fireEstados.png", width=1600)
 
     st.subheader("Mapas interativos")
 
-    mapPath = "/incendioD3/maps/heatMap.html"
+    mapPath = "../maps/heatMap.html"
 
     with open(mapPath, "r", encoding="utf-8") as f:
         mapaHtml = f.read()
