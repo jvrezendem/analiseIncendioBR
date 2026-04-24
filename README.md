@@ -284,9 +284,20 @@ As imagens geradas pelo projeto podem ser encontradas na pasta `assets`.
 
 ### Ranking nacional dos estados mais afetados
 
-```md
-![Ranking dos estados mais afetados](assets/rankingEstados.png)
-```
+A tabela abaixo apresenta os 10 estados brasileiros com maior número de focos de incêndio registrados no período analisado.
+
+| Posição | Estado | Número de Focos |
+|---:|---|---:|
+| 1 | PARÁ | 393.955 |
+| 2 | MATO GROSSO | 317.760 |
+| 3 | MARANHÃO | 229.624 |
+| 4 | AMAZONAS | 162.838 |
+| 5 | TOCANTINS | 140.215 |
+| 6 | PIAUÍ | 118.402 |
+| 7 | RONDÔNIA | 111.008 |
+| 8 | BAHIA | 106.858 |
+| 9 | MINAS GERAIS | 94.619 |
+| 10 | ACRE | 80.451 |
 
 Essa visualização compara Minas Gerais com outros estados brasileiros no número de focos registrados.
 
