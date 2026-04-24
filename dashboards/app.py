@@ -151,7 +151,8 @@ def normalize_file_name(value: str) -> str:
     text = str(value).strip().lower()
     text = unicodedata.normalize("NFKD", text)
     text = "".join(char for char in text if not unicodedata.combining(char))
-    text = text.replace(" ", "_")
+    text = "".join(char if char.isalnum() else "_" for char in text)
+    text = "_".join(part for part in text.split("_") if part)
     return text
 
 
@@ -418,14 +419,14 @@ elif section == "Análises por Município":
             municipio_arquivo = normalize_file_name(municipio_selecionado)
 
             show_image(
-                f"assets/graficosMunicipiosTaxa/taxa_variacao_anual_{municipio_arquivo}.png",
+                f"assets/graficosMunicipiosTaxa/grafico_taxa_{municipio_arquivo}.png",
                 "Taxa de variação anual do município",
             )
 
             show_image(
-                f"assets/graficosMunicipiosMes/focos_mes_{municipio_arquivo}.png",
+                f"assets/graficosMunicipiosMes/grafico_mes_{municipio_arquivo}.png",
                 "Focos por mês no município",
             )
 
             st.markdown("#### Mapa interativo do município")
-            show_html_map(f"assets/mapas/{municipio_arquivo}.html", height=600)
+            show_html_map(f"assets/mapas/mapa_focos_{municipio_arquivo}.html", height=600)
