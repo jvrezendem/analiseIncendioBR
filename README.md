@@ -52,7 +52,7 @@ Essa análise permite entender a variação anual dos incêndios no estado e ide
 
 #### Visualização
 
-![Número de focos de incêndio por ano em Minas Gerais](assets/focosAnoMG.png)
+![Número de focos de incêndio por ano em Minas Gerais](assets/graficosMg/num_focos_anos_mg.png)
 
 > Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `focosAnoMG.png` pelo nome correto da imagem.
 
@@ -73,7 +73,7 @@ Esse indicador permite observar se houve aumento ou redução no número de foco
 
 #### Visualização
 
-![Taxa de variação anual dos focos de incêndio](assets/taxaVariacaoAnual.png)
+![Taxa de variação anual dos focos de incêndio](assets/graficosMg/variacao_focos_mg.png)
 
 > Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `taxaVariacaoAnual.png` pelo nome correto da imagem.
 
@@ -110,7 +110,7 @@ Essa etapa permite identificar quais formações naturais sofreram maior impacto
 
 #### Visualização
 
-![Bioma mais afetado em Minas Gerais](assets/fireBiomas.png)
+![Bioma mais afetado em Minas Gerais](assets/graficosMg/biomas_mg.png)
 
 > Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `fireBiomas.png` pelo nome correto da imagem.
 
@@ -138,7 +138,7 @@ Essa análise permite identificar em quais períodos do ano os incêndios são m
 
 #### Visualização
 
-![Número de focos de incêndio por mês](assets/focosMeses.png)
+![Número de focos de incêndio por mês](assets/graficosMg/num_focos_mes_mg.png)
 
 > Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `focosMeses.png` pelo nome correto da imagem.
 
@@ -281,35 +281,6 @@ As imagens geradas pelo projeto podem ser encontradas na pasta `assets`.
 
 > Caso algum nome de imagem esteja diferente no repositório, basta ajustar o caminho correspondente.
 
-### Focos por ano em Minas Gerais
-
-```md
-![Focos por ano em Minas Gerais](assets/focosAnoMG.png)
-```
-
-Esse gráfico mostra a evolução anual dos focos de incêndio no estado entre 2015 e 2025.
-
----
-
-### Biomas mais afetados
-
-```md
-![Focos por bioma](assets/fireBiomas.png)
-```
-
-Esse gráfico apresenta a distribuição dos focos de incêndio entre os biomas presentes em Minas Gerais.
-
----
-
-### Taxa de variação anual
-
-```md
-![Taxa de variação anual](assets/taxaVariacaoAnual.png)
-```
-
-Esse gráfico mostra o crescimento ou queda percentual dos focos de incêndio em relação aos anos anteriores.
-
----
 
 ### Ranking nacional dos estados mais afetados
 
@@ -318,16 +289,6 @@ Esse gráfico mostra o crescimento ou queda percentual dos focos de incêndio em
 ```
 
 Essa visualização compara Minas Gerais com outros estados brasileiros no número de focos registrados.
-
----
-
-### Focos por mês
-
-```md
-![Focos por mês](assets/focosMeses.png)
-```
-
-Esse gráfico mostra os meses com maior concentração de focos de incêndio.
 
 ---
 
@@ -344,7 +305,7 @@ O mapa de calor permite visualizar espacialmente as regiões mais afetadas em Mi
 ### Unidades de conservação
 
 ```md
-![Áreas de conservação afetadas](assets/areasConservacao.png)
+![Áreas de conservação afetadas](assets/graficosReservas/por_area_p_reserva.png)
 ```
 
 Esse gráfico apresenta o impacto dos incêndios em áreas de conservação ambiental.
@@ -395,35 +356,24 @@ A estrutura do projeto pode seguir o seguinte padrão:
 analiseIncendioBR/
 │
 ├── assets/
-│   ├── focosAnoMG.png
-│   ├── fireBiomas.png
-│   ├── taxaVariacaoAnual.png
-│   ├── rankingEstados.png
-│   ├── focosMeses.png
-│   ├── heatMap.png
-│   └── areasConservacao.png
-│
+│   ├── graficosMaioresMunicipios/
+│   ├── graficosMg/
+│   ├── graficosReservas/   
+│   
 ├── data/
 │   ├── raw/
 │   └── processed/
-│
-├── dashboards/
-│   └── app.py
+│   └── final/
 │
 ├── maps/
 │   └── heatMap.html
-│
+│   └── exemplos de testes de mapas por municipios
 ├── notebooks/
 │   └── analises.ipynb
 │
-├── src/
-│   ├── database.py
-│   ├── processamento.py
-│   ├── graficos.py
-│   └── mapas.py
 │
 ├── requirements.txt
-├── .env.example
+├── .gitattributes
 ├── .gitignore
 └── README.md
 ```
@@ -484,22 +434,6 @@ psycopg2-binary
 ```
 
 ---
-
-### 4. Configurar variáveis de ambiente
-
-O projeto utiliza variáveis de ambiente para conexão com banco de dados e Supabase.
-
-Crie um arquivo `.env` na raiz do projeto com base no arquivo `.env.example`.
-
-Exemplo:
-
-```env
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
-SUPABASE_URL="https://sua-url-do-supabase.supabase.co"
-SUPABASE_KEY="sua-chave-publica-ou-anon-key"
-```
-
-> Importante: o arquivo `.env` não deve ser enviado para o GitHub. Ele deve estar listado no `.gitignore`.
 
 ---
 
@@ -624,62 +558,3 @@ No ranking nacional, Minas Gerais aparece como o **9º estado mais afetado** por
 A análise das áreas protegidas mostrou que os incêndios também atingiram unidades de conservação ambiental, com destaque para o ano de 2020, que apresentou a maior área afetada.
 
 ---
-
-## 🧭 Possíveis Aplicações
-
-Este projeto pode ser utilizado para:
-
-- Estudos ambientais;
-- Monitoramento de queimadas;
-- Apoio a políticas públicas;
-- Planejamento de prevenção a incêndios;
-- Educação ambiental;
-- Visualização de dados geográficos;
-- Construção de dashboards analíticos;
-- Estudos acadêmicos sobre clima, vegetação e queimadas.
-
----
-
-## 🚀 Melhorias Futuras
-
-Algumas melhorias possíveis para o projeto:
-
-- Adicionar filtros interativos por ano, município e bioma;
-- Criar um dashboard online mais completo;
-- Integrar dados climáticos, como chuva, temperatura e umidade;
-- Adicionar modelos preditivos para estimar risco de incêndio;
-- Criar alertas automáticos para regiões críticas;
-- Melhorar os mapas interativos;
-- Adicionar análise por estação do ano;
-- Comparar os focos de incêndio com dados de desmatamento;
-- Criar uma API para consulta dos dados processados.
-
----
-
-## 👥 Autores
-
-Projeto desenvolvido para análise de dados ambientais sobre focos de incêndio no Brasil, com foco em Minas Gerais.
-
-Repositório:
-
-```text
-https://github.com/jvrezendem/analiseIncendioBR
-```
-
----
-
-## 📄 Licença
-
-Este projeto pode ser utilizado para fins acadêmicos, educacionais e analíticos.
-
-Caso deseje utilizar os dados, gráficos ou análises em outro projeto, recomenda-se citar este repositório como referência.
-
----
-
-## ✅ Status do Projeto
-
-```text
-Em desenvolvimento
-```
-
-O projeto já conta com análises exploratórias, gráficos, mapas e indicadores produzidos, mas pode continuar evoluindo com novas visualizações, automações e modelos preditivos.
