@@ -1,5 +1,15 @@
 # 🔥 Análise de Focos de Incêndio em Minas Gerais e Brasil
 
+## 🌐 Dashboard Interativo
+
+Acesse o dashboard interativo do projeto pelo link abaixo:
+
+👉 [Abrir Dashboard Interativo](https://dashboardincenciobr.streamlit.app/)
+
+> **Aviso:** o dashboard interativo foi desenvolvido com auxílio de IA, utilizando o ChatGPT, a partir de um prompt de autoria do responsável pelo projeto. Ele tem como finalidade exemplificar, organizar e reunir as análises e visualizações produzidas no repositório.
+
+---
+
 Este repositório apresenta um projeto de análise de dados sobre focos de incêndio no Brasil, com foco principal no estado de **Minas Gerais**, seus municípios, biomas e unidades de conservação ambiental.
 
 Foram utilizados dados do **INPE** e da **Fundação Chico Mendes** para a análise dos dados de incêndio em Minas Gerais entre os anos de **2015 e 2025**, além de dados relacionados às reservas ambientais do estado.
