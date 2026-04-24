@@ -285,8 +285,6 @@ Essa métrica permite comparar unidades de tamanhos diferentes de forma mais jus
 
 As imagens geradas pelo projeto podem ser encontradas na pasta `assets`.
 
-> Caso algum nome de imagem esteja diferente no repositório, basta ajustar o caminho correspondente.
-
 
 ### Ranking nacional dos estados mais afetados
 
@@ -312,7 +310,7 @@ Essa visualização compara Minas Gerais com outros estados brasileiros no núme
 ### Mapa de calor
 
 ```md
-![Mapa de calor dos focos](assets/heatMap.png)
+![Mapa de calor dos focos](assets/graficosMg/print_heatMap.png)
 ```
 
 O mapa de calor permite visualizar espacialmente as regiões mais afetadas em Minas Gerais.
