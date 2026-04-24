@@ -359,9 +359,9 @@ O projeto utiliza ferramentas de análise de dados, visualização e desenvolvim
 
 ---
 
-## 📁 Estrutura Recomendada do Projeto
+## 📁 Estrutura do Projeto
 
-A estrutura do projeto pode seguir o seguinte padrão:
+A estrutura do projeto segue o seguinte padrão:
 
 ```text
 analiseIncendioBR/
