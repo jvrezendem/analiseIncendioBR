@@ -181,6 +181,19 @@ Foi criado um ranking dos municípios mineiros com maior incidência de focos de
 
 Essa análise permite identificar quais cidades concentram os maiores volumes de registros e quais regiões demandam maior atenção.
 
+| Posição | Município | Número de Focos |
+|---:|---|---:|
+| 1 | PARACATU | 1.727 |
+| 2 | JOÃO PINHEIRO | 1.383 |
+| 3 | LASSANCE | 1.342 |
+| 4 | UBERABA | 1.267 |
+| 5 | UNAÍ | 1.103 |
+| 6 | DIAMANTINA | 1.053 |
+| 7 | UBERLÂNDIA | 1.026 |
+| 8 | ARINOS | 924 |
+| 9 | BURITIZEIRO | 885 |
+| 10 | JAÍBA | 879 |
+
 ---
 
 ### 2. Taxa de variação anual por município
