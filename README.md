@@ -50,6 +50,12 @@ Foi realizada uma análise temporal considerando o número de focos de incêndio
 
 Essa análise permite entender a variação anual dos incêndios no estado e identificar anos críticos.
 
+#### Visualização
+
+![Número de focos de incêndio por ano em Minas Gerais](assets/focosAnoMG.png)
+
+> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `focosAnoMG.png` pelo nome correto da imagem.
+
 #### Principais resultados
 
 - **Maior registro:** 2021, com **12.110 focos registrados**.
@@ -64,6 +70,12 @@ Essa visualização ajuda a identificar períodos de maior intensidade e possív
 Para complementar a análise, foi criado um indicador chamado **Taxa de Variação Anual dos Focos de Incêndio**.
 
 Esse indicador permite observar se houve aumento ou redução no número de focos em relação ao ano anterior.
+
+#### Visualização
+
+![Taxa de variação anual dos focos de incêndio](assets/taxaVariacaoAnual.png)
+
+> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `taxaVariacaoAnual.png` pelo nome correto da imagem.
 
 A fórmula utilizada foi:
 
@@ -96,6 +108,12 @@ Também foi realizada uma análise dos focos de incêndio por bioma dentro do es
 
 Essa etapa permite identificar quais formações naturais sofreram maior impacto ao longo do período analisado.
 
+#### Visualização
+
+![Bioma mais afetado em Minas Gerais](assets/fireBiomas.png)
+
+> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `fireBiomas.png` pelo nome correto da imagem.
+
 A análise é importante porque diferentes biomas apresentam diferentes níveis de vulnerabilidade ao fogo, além de características ambientais e climáticas próprias.
 
 ---
@@ -117,6 +135,12 @@ Essa informação permite compreender a gravidade da situação do estado em esc
 Foi realizada uma análise mensal dos focos de incêndio, agrupando os registros pelos meses do ano.
 
 Essa análise permite identificar em quais períodos do ano os incêndios são mais frequentes.
+
+#### Visualização
+
+![Número de focos de incêndio por mês](assets/focosMeses.png)
+
+> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `focosMeses.png` pelo nome correto da imagem.
 
 #### Principal insight
 
