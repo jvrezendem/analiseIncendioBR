@@ -64,8 +64,6 @@ Essa análise permite entender a variação anual dos incêndios no estado e ide
 
 ![Número de focos de incêndio por ano em Minas Gerais](assets/graficosMg/num_focos_anos_mg.png)
 
-> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `focosAnoMG.png` pelo nome correto da imagem.
-
 #### Principais resultados
 
 - **Maior registro:** 2021, com **12.110 focos registrados**.
@@ -84,8 +82,6 @@ Esse indicador permite observar se houve aumento ou redução no número de foco
 #### Visualização
 
 ![Taxa de variação anual dos focos de incêndio](assets/graficosMg/variacao_focos_mg.png)
-
-> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `taxaVariacaoAnual.png` pelo nome correto da imagem.
 
 A fórmula utilizada foi:
 
@@ -122,8 +118,6 @@ Essa etapa permite identificar quais formações naturais sofreram maior impacto
 
 ![Bioma mais afetado em Minas Gerais](assets/graficosMg/biomas_mg.png)
 
-> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `fireBiomas.png` pelo nome correto da imagem.
-
 A análise é importante porque diferentes biomas apresentam diferentes níveis de vulnerabilidade ao fogo, além de características ambientais e climáticas próprias.
 
 ---
@@ -149,8 +143,6 @@ Essa análise permite identificar em quais períodos do ano os incêndios são m
 #### Visualização
 
 ![Número de focos de incêndio por mês](assets/graficosMg/num_focos_mes_mg.png)
-
-> Caso o nome do arquivo esteja diferente na pasta `assets`, substitua `focosMeses.png` pelo nome correto da imagem.
 
 #### Principal insight
 
