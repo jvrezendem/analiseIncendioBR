@@ -191,6 +191,8 @@ Com isso, é possível observar se determinado município apresentou crescimento
 
 Essa análise pode ser aplicada a qualquer município presente na base de dados.
 
+![Número de focos de incêndio por ano em Minas Gerais](assets/graficosMaioresMunicipios/taxa_variacao_anual_divinópolis.png)
+
 ---
 
 ### 3. Análise das maiores cidades de Minas Gerais
@@ -218,11 +220,15 @@ Para cada município, também foi feita uma análise da distribuição dos focos
 
 Essa análise permite identificar se o padrão estadual, com maior ocorrência no período seco, também se repete em escala municipal.
 
+![Número de focos de incêndio por ano em Minas Gerais](assets/graficosMaioresMunicipios/focos_mes_divinópolis.png)
+
 ---
 
 ### 5. Mapa interativo por município
 
 O projeto também conta com mapas interativos que exibem os focos de incêndio do último ano disponível para cada município.
+
+![Número de focos de incêndio por ano em Minas Gerais](assets/graficosMaioresMunicipios/mapa_print_divinopolis.png)
 
 Esses mapas permitem uma visualização mais detalhada da distribuição geográfica dos registros.
 
