@@ -1,4 +1,5 @@
 from pathlib import Path
+import unicodedata
 
 import pandas as pd
 import streamlit as st
@@ -17,63 +18,87 @@ st.set_page_config(
 )
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-ASSETS_DIR = BASE_DIR / "assets"
-MAPS_DIR = BASE_DIR / "maps"
 DATA_DIR = BASE_DIR / "data" / "final"
 
 
 # ============================================================
-# ESTILO VISUAL
+# ESTILO VISUAL - DARK THEME
 # ============================================================
 
 st.markdown(
     """
     <style>
+        html, body, [data-testid="stAppViewContainer"] {
+            background-color: #0f1117;
+            color: #e5e7eb;
+        }
+
+        [data-testid="stSidebar"] {
+            background-color: #151922;
+            border-right: 1px solid #2d3748;
+        }
+
         .main-title {
             font-size: 2.4rem;
             font-weight: 800;
-            color: #1f2933;
+            color: #f8fafc;
             margin-bottom: 0.3rem;
         }
 
         .section-title {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #263238;
+            color: #f97316;
             margin-top: 1.5rem;
             margin-bottom: 0.8rem;
         }
 
+        .ai-notice {
+            background: linear-gradient(135deg, #111827, #1f2937);
+            border: 1px solid #334155;
+            border-left: 6px solid #38bdf8;
+            padding: 1rem 1.2rem;
+            border-radius: 14px;
+            margin: 1rem 0 1.4rem 0;
+            color: #dbeafe;
+        }
+
         .insight-box {
-            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            background: linear-gradient(135deg, #2a1607, #431407);
             border-left: 6px solid #f97316;
             padding: 1rem 1.2rem;
             border-radius: 12px;
             margin: 1rem 0;
-            color: #431407;
+            color: #fed7aa;
         }
 
         .info-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            background: #151922;
+            border: 1px solid #334155;
             padding: 1rem 1.2rem;
             border-radius: 12px;
             margin: 1rem 0;
-            color: #263238;
-        }
-
-        .mg-highlight {
-            background-color: #fff3cd;
-            color: #5c3d00;
-            font-weight: 700;
+            color: #e5e7eb;
         }
 
         div[data-testid="stMetric"] {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb;
+            background-color: #151922;
+            border: 1px solid #334155;
             padding: 1rem;
             border-radius: 14px;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        div[data-testid="stMetric"] label {
+            color: #cbd5e1 !important;
+        }
+
+        div[data-testid="stMetricValue"] {
+            color: #f8fafc !important;
+        }
+
+        div[data-testid="stMetricDelta"] {
+            color: #fb923c !important;
         }
     </style>
     """,
@@ -87,7 +112,6 @@ st.markdown(
 
 @st.cache_data
 def load_municipios_data() -> pd.DataFrame:
-    """Carrega os dados finais dos municípios, caso o arquivo exista."""
     file_path = DATA_DIR / "dados_municipios.csv"
 
     if not file_path.exists():
@@ -101,7 +125,6 @@ def load_municipios_data() -> pd.DataFrame:
 
 
 def show_image(relative_path: str, caption: str | None = None) -> None:
-    """Exibe uma imagem da pasta do projeto com tratamento de erro."""
     image_path = BASE_DIR / relative_path
 
     if image_path.exists():
@@ -111,7 +134,6 @@ def show_image(relative_path: str, caption: str | None = None) -> None:
 
 
 def show_html_map(relative_path: str, height: int = 650) -> None:
-    """Renderiza um arquivo HTML dentro do Streamlit."""
     map_path = BASE_DIR / relative_path
 
     if not map_path.exists():
@@ -125,13 +147,15 @@ def show_html_map(relative_path: str, height: int = 650) -> None:
         st.error(f"Erro ao carregar o mapa: {erro}")
 
 
-def normalize_text(value: str) -> str:
-    """Normaliza textos para facilitar buscas por município."""
-    return str(value).strip().upper()
+def normalize_file_name(value: str) -> str:
+    text = str(value).strip().lower()
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(char for char in text if not unicodedata.combining(char))
+    text = text.replace(" ", "_")
+    return text
 
 
 def find_column(df: pd.DataFrame, possible_names: list[str]) -> str | None:
-    """Encontra uma coluna considerando nomes possíveis."""
     normalized_columns = {col.strip().lower(): col for col in df.columns}
 
     for name in possible_names:
@@ -147,29 +171,10 @@ def create_ranking_estados_df() -> pd.DataFrame:
         {
             "Posição": list(range(1, 11)),
             "Estado": [
-                "PARÁ",
-                "MATO GROSSO",
-                "MARANHÃO",
-                "AMAZONAS",
-                "TOCANTINS",
-                "PIAUÍ",
-                "RONDÔNIA",
-                "BAHIA",
-                "MINAS GERAIS",
-                "ACRE",
+                "PARÁ", "MATO GROSSO", "MARANHÃO", "AMAZONAS", "TOCANTINS",
+                "PIAUÍ", "RONDÔNIA", "BAHIA", "MINAS GERAIS", "ACRE",
             ],
-            "Número de Focos": [
-                393955,
-                317760,
-                229624,
-                162838,
-                140215,
-                118402,
-                111008,
-                106858,
-                94619,
-                80451,
-            ],
+            "Número de Focos": [393955, 317760, 229624, 162838, 140215, 118402, 111008, 106858, 94619, 80451],
         }
     )
 
@@ -179,35 +184,15 @@ def create_ranking_municipios_df() -> pd.DataFrame:
         {
             "Posição": list(range(1, 11)),
             "Município": [
-                "PARACATU",
-                "JOÃO PINHEIRO",
-                "LASSANCE",
-                "UBERABA",
-                "UNAÍ",
-                "DIAMANTINA",
-                "UBERLÂNDIA",
-                "ARINOS",
-                "BURITIZEIRO",
-                "JAÍBA",
+                "PARACATU", "JOÃO PINHEIRO", "LASSANCE", "UBERABA", "UNAÍ",
+                "DIAMANTINA", "UBERLÂNDIA", "ARINOS", "BURITIZEIRO", "JAÍBA",
             ],
-            "Número de Focos": [
-                1727,
-                1383,
-                1342,
-                1267,
-                1103,
-                1053,
-                1026,
-                924,
-                885,
-                879,
-            ],
+            "Número de Focos": [1727, 1383, 1342, 1267, 1103, 1053, 1026, 924, 885, 879],
         }
     )
 
 
 def format_number_br(value: int | float) -> str:
-    """Formata números no padrão brasileiro."""
     try:
         return f"{int(value):,}".replace(",", ".")
     except Exception:
@@ -241,6 +226,17 @@ st.sidebar.caption("Dashboard de focos de incêndio entre 2015 e 2025.")
 st.markdown('<div class="main-title">🔥 Dashboard de Focos de Incêndio</div>', unsafe_allow_html=True)
 st.markdown(
     "Análise exploratória de focos de incêndio no Brasil, com foco principal no estado de **Minas Gerais**."
+)
+st.markdown(
+    """
+    <div class="ai-notice">
+    <strong>Aviso sobre a criação do dashboard:</strong><br>
+    Este dashboard foi feito por IA, utilizando o ChatGPT, a partir de um prompt de autoria do responsável pelo projeto.
+    Ele tem apenas a finalidade de exemplificar e reunir as análises e visualizações já produzidas, não estando presente
+    nas questões, ideias das visualizações e informações reunidas.
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 st.markdown("---")
 
@@ -287,48 +283,24 @@ if section == "Visão Geral - MG":
 
 elif section == "Análises de Minas Gerais":
     st.markdown('<div class="section-title">2. Focos de incêndio por ano em Minas Gerais</div>', unsafe_allow_html=True)
-    st.write(
-        "O gráfico abaixo mostra a evolução anual dos focos de incêndio em Minas Gerais, "
-        "destacando os anos de maior e menor ocorrência."
-    )
-    show_image(
-        "assets/graficosMg/num_focos_anos_mg.png",
-        "Número de focos de incêndio por ano em Minas Gerais",
-    )
+    st.write("O gráfico abaixo mostra a evolução anual dos focos de incêndio em Minas Gerais.")
+    show_image("assets/graficosMg/num_focos_anos_mg.png", "Número de focos de incêndio por ano em Minas Gerais")
 
     st.markdown("---")
     st.markdown('<div class="section-title">3. Taxa de Variação Anual dos Focos de Incêndio</div>', unsafe_allow_html=True)
-    st.write(
-        "A taxa de variação anual indica o crescimento ou a redução dos focos de incêndio "
-        "em relação ao ano anterior."
-    )
+    st.write("A taxa de variação anual indica o crescimento ou a redução dos focos de incêndio em relação ao ano anterior.")
     st.code("Taxa = ((F_atual - F_anterior) / F_anterior) * 100", language="text")
-    show_image(
-        "assets/graficosMg/variacao_focos_mg.png",
-        "Taxa de variação anual dos focos de incêndio em Minas Gerais",
-    )
+    show_image("assets/graficosMg/variacao_focos_mg.png", "Taxa de variação anual dos focos de incêndio em Minas Gerais")
 
     st.markdown("---")
     st.markdown('<div class="section-title">4. Biomas mais afetados em Minas Gerais</div>', unsafe_allow_html=True)
-    st.write(
-        "Esta seção apresenta a distribuição dos focos por bioma, permitindo identificar "
-        "quais formações naturais foram mais afetadas no período analisado."
-    )
-    show_image(
-        "assets/graficosMg/biomas_mg.png",
-        "Biomas mais afetados em Minas Gerais",
-    )
+    st.write("Esta seção apresenta a distribuição dos focos por bioma.")
+    show_image("assets/graficosMg/biomas_mg.png", "Biomas mais afetados em Minas Gerais")
 
     st.markdown("---")
     st.markdown('<div class="section-title">6. Número de focos de incêndio por mês</div>', unsafe_allow_html=True)
-    st.write(
-        "A análise mensal permite identificar os períodos do ano com maior concentração "
-        "de focos de incêndio."
-    )
-    show_image(
-        "assets/graficosMg/num_focos_mes_mg.png",
-        "Número de focos de incêndio por mês em Minas Gerais",
-    )
+    st.write("A análise mensal permite identificar os períodos do ano com maior concentração de focos de incêndio.")
+    show_image("assets/graficosMg/num_focos_mes_mg.png", "Número de focos de incêndio por mês em Minas Gerais")
     st.markdown(
         """
         <div class="insight-box">
@@ -347,18 +319,13 @@ elif section == "Análises de Minas Gerais":
 
 elif section == "Ranking Nacional":
     st.markdown('<div class="section-title">5. Ranking nacional dos estados mais afetados</div>', unsafe_allow_html=True)
-    st.write(
-        "A tabela abaixo apresenta os 10 estados brasileiros com maior número de focos de incêndio "
-        "no período analisado, com destaque para Minas Gerais."
-    )
-
     ranking_estados = create_ranking_estados_df()
 
     styled_ranking = ranking_estados.style.apply(
         lambda row: [
-            "background-color: #fff3cd; color: #5c3d00; font-weight: bold"
+            "background-color: #7c2d12; color: #ffedd5; font-weight: bold"
             if row["Estado"] == "MINAS GERAIS"
-            else ""
+            else "background-color: #111827; color: #e5e7eb"
             for _ in row
         ],
         axis=1,
@@ -383,12 +350,8 @@ elif section == "Ranking Nacional":
 
 elif section == "Mapa de Calor":
     st.markdown('<div class="section-title">7. Mapa de calor dos focos de incêndio</div>', unsafe_allow_html=True)
-    st.write(
-        "O mapa de calor permite visualizar espacialmente as regiões mais afetadas por focos "
-        "de incêndio em Minas Gerais."
-    )
-
-    show_html_map("maps/heatMap.html", height=650)
+    st.write("O mapa de calor permite visualizar espacialmente as regiões mais afetadas por focos de incêndio em Minas Gerais.")
+    show_html_map("maps/HeatMapMG.html", height=650)
 
 
 # ============================================================
@@ -401,7 +364,10 @@ elif section == "Análises por Município":
     st.subheader("Ranking dos municípios mais afetados")
     ranking_municipios = create_ranking_municipios_df()
     st.dataframe(
-        ranking_municipios.style.format({"Número de Focos": format_number_br}),
+        ranking_municipios.style.apply(
+            lambda row: ["background-color: #111827; color: #e5e7eb" for _ in row],
+            axis=1,
+        ).format({"Número de Focos": format_number_br}),
         use_container_width=True,
         hide_index=True,
     )
@@ -414,15 +380,10 @@ elif section == "Análises por Município":
     if df_municipios.empty:
         st.warning("Arquivo `data/final/dados_municipios.csv` não encontrado ou vazio.")
     else:
-        municipio_col = find_column(
-            df_municipios,
-            ["municipio", "Município", "Municipio", "cidade", "Cidade"],
-        )
+        municipio_col = find_column(df_municipios, ["municipio", "Município", "Municipio", "cidade", "Cidade"])
 
         if municipio_col is None:
-            st.error(
-                "Não foi possível encontrar uma coluna de município no arquivo `dados_municipios.csv`."
-            )
+            st.error("Não foi possível encontrar uma coluna de município no arquivo `dados_municipios.csv`.")
             st.write("Colunas disponíveis:", list(df_municipios.columns))
         else:
             municipios = sorted(df_municipios[municipio_col].dropna().astype(str).unique())
@@ -433,18 +394,14 @@ elif section == "Análises por Município":
             )
 
             df_filtrado = df_municipios[
-                df_municipios[municipio_col].astype(str).str.upper()
-                == municipio_selecionado.upper()
+                df_municipios[municipio_col].astype(str).str.upper() == municipio_selecionado.upper()
             ]
 
             col1, col2, col3 = st.columns(3)
             col1.metric("Município selecionado", municipio_selecionado)
             col2.metric("Registros encontrados", len(df_filtrado))
 
-            focos_col = find_column(
-                df_filtrado,
-                ["Numero_Focos", "Número de Focos", "Numero Focos", "Focos", "focos"],
-            )
+            focos_col = find_column(df_filtrado, ["Numero_Focos", "Número de Focos", "Numero Focos", "Focos", "focos"])
 
             if focos_col and not df_filtrado.empty:
                 total_focos = pd.to_numeric(df_filtrado[focos_col], errors="coerce").sum()
@@ -457,26 +414,18 @@ elif section == "Análises por Município":
 
             st.markdown("---")
             st.subheader("Visualizações do município")
-            st.write(
-                "Quando existirem imagens específicas para o município selecionado, elas serão exibidas abaixo."
+
+            municipio_arquivo = normalize_file_name(municipio_selecionado)
+
+            show_image(
+                f"assets/graficosMunicipiosTaxa/taxa_variacao_anual_{municipio_arquivo}.png",
+                "Taxa de variação anual do município",
             )
 
-            municipio_arquivo = municipio_selecionado.lower()
+            show_image(
+                f"assets/graficosMunicipiosMes/focos_mes_{municipio_arquivo}.png",
+                "Focos por mês no município",
+            )
 
-            possible_images = [
-                (
-                    f"assets/graficosMaioresMunicipios/taxa_variacao_anual_{municipio_arquivo}.png",
-                    "Taxa de variação anual do município",
-                ),
-                (
-                    f"assets/graficosMaioresMunicipios/focos_mes_{municipio_arquivo}.png",
-                    "Focos por mês no município",
-                ),
-                (
-                    f"assets/graficosMaioresMunicipios/mapa_print_{municipio_arquivo}.png",
-                    "Mapa do município",
-                ),
-            ]
-
-            for image_path, caption in possible_images:
-                show_image(image_path, caption)
+            st.markdown("#### Mapa interativo do município")
+            show_html_map(f"assets/mapas/{municipio_arquivo}.html", height=600)
