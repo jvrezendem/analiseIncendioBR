@@ -309,9 +309,7 @@ Essa visualização compara Minas Gerais com outros estados brasileiros no núme
 
 ### Mapa de calor
 
-```md
 ![Mapa de calor dos focos](assets/graficosMg/print_heatMap.png)
-```
 
 O mapa de calor permite visualizar espacialmente as regiões mais afetadas em Minas Gerais.
 
@@ -319,9 +317,7 @@ O mapa de calor permite visualizar espacialmente as regiões mais afetadas em Mi
 
 ### Unidades de conservação
 
-```md
 ![Áreas de conservação afetadas](assets/graficosReservas/por_area_p_reserva.png)
-```
 
 Esse gráfico apresenta o impacto dos incêndios em áreas de conservação ambiental.
 
