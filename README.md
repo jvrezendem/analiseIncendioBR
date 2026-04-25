@@ -284,6 +284,8 @@ Foi analisada a área afetada pelo fogo em hectares ao longo dos anos.
 - **Maior registro:** 2020, com **94.372,1 hectares afetados**.
 - **Menor registro:** 2021, com **30.681,74 hectares afetados**.
 
+![Mapa de calor dos focos](assets/graficosReservas/area_queimada_anos.png)
+
 Essa análise mostra que, mesmo quando o número de focos varia, o impacto ambiental pode ser avaliado também pela extensão territorial atingida.
 
 ---
@@ -293,6 +295,8 @@ Essa análise mostra que, mesmo quando o número de focos varia, o impacto ambie
 Também foi analisada a porcentagem média de área queimada por unidade de conservação entre **2015 e 2025**.
 
 Essa métrica permite comparar unidades de tamanhos diferentes de forma mais justa, observando proporcionalmente quais áreas sofreram maior impacto.
+
+![Mapa de calor dos focos](assets/graficosReservas/media_porgentagem.png)
 
 ---
 
